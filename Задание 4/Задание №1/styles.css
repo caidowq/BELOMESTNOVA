@@ -1,0 +1,150 @@
+#scene {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  background: black;
+  overflow: hidden;
+}
+
+#stars {
+  position: absolute;
+  width: 100%;
+  height: 200%; 
+  top: -100%; 
+  animation: moveStars 10s linear infinite;
+}
+
+.stars-layer {
+  position: absolute;
+  width: 100%;
+  height: 100%; 
+  top: 0; 
+}
+
+.stars-layer::before, .stars-layer::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+}
+
+.stars-layer::after {
+  top: -100%;
+}
+
+.star {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 5px white;
+  top: var(--random-top);
+  left: var(--random-left);
+}
+
+.star:nth-child(n) {
+  --random-top: calc(100% * random());
+  --random-left: calc(100% * random());
+}
+
+@keyframes moveStars {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+#stars {
+  animation: moveStars 20s linear infinite;
+}
+#ship {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.5);
+}
+
+#nose {
+  width: 0;
+  height: 0;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-bottom: 70px solid #3a434f;
+  border-radius: 20px;
+  position: absolute;
+  top: -60px;
+  left: 0;
+}
+
+#hull {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, #3a434f 0%, #5b6b72 100%);
+  position: relative;
+  border-radius: 16px;
+}
+
+#cockpit {
+  height: 60px;
+  width: 60px;
+  background: #556369;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  border-radius: 50%;
+  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
+}
+
+#rear-rocket {
+  width: 20px;
+  height: 40px;
+  background: #ffab09;
+  position: absolute;
+  bottom: -40px;
+  left: 40px;
+  border-radius: 10px;
+}
+
+.side-rocket {
+  background: #3a434f;
+  height: 50px;
+  width: 30px;
+  position: absolute;
+  bottom: 4px;
+  border-radius: 5px;
+}
+
+.side-left {
+  left: -30px;
+}
+
+.side-right {
+  right: -30px;
+}
+
+.flame {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 20px;
+  background: linear-gradient(0deg, #ffab09, #ffa000);
+  border-radius: 50%;
+  box-shadow: 0px 0px 5px 2px #ffab09;
+  animation: flameFlicker 1s infinite;
+}
+
+@keyframes flameFlicker {
+  0%, 100% { transform: translateX(-50%) scaleY(1); }
+  50% { transform: translateX(-50%) scaleY(0.8); }
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
